@@ -2,10 +2,10 @@ const express = require('express');
 const app = express();
 const port = 3000;
 
-
+// Configurazione asset statici: cerca i file nella cartella "public"
 app.use(express.static('public'));
 
-
+// Dati dei postets del blog di viaggio in Marocco
 const postets = [
 
     {
@@ -40,14 +40,42 @@ const postets = [
     }
 ];
 
+// Rotta per la home page
 app.get('/', (req, res) => {
     res.send("Server del mio blog di viaggio in Marocco");
-
 });
 
+
+// Rotta per la bacheca del blog, che mostra i postets
+app.get('/bacheca', (req, res) => {
+
+    let html = "<div style='background-color: #2274bb; padding: 50px; min-height: 100vh; display: flex; font-family: Arial, sans-serif; align-items: center;'>";
+
+    html += "<h1 style='color: red; text-align: center; width: 100%; margin-bottom: 40px;'>Benvenuti nel mio blog di viaggio in Marocco!</h1>";
+
+
+    postets.forEach(postet => {
+        html +=
+            `<div style="background-color: #068a9b; border-radius: 10px; padding: 20px; margin: 20px; width: 80%; max-width: 600px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);">`;
+        html += `<h2>${postet.titolo}</h2>`;
+        html += `<p>${postet.descrizione}</p>`;
+        html += `<img src="${postet.immagine}" alt="${postet.titolo}" style="max-width: 300px; display: block; margin: 10px 0;"</div>`;
+
+    });
+    html += "</div>";
+
+    res.send(html);
+});
+
+// Rotta per ottenere i postets in formato JSON
 app.get('/postets', (req, res) => {
     res.json(postets);
 });
+
+
+
+
+
 
 app.listen(port, () => {
     console.log(`Server in ascolto sulla porta ${port}`);

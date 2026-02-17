@@ -49,14 +49,14 @@ app.get('/', (req, res) => {
 // Rotta per la bacheca del blog, che mostra i postets
 app.get('/bacheca', (req, res) => {
 
-    let html = "<div style='background-color: #2274bb; padding: 50px; min-height: 100vh; display: flex; font-family: Arial, sans-serif; align-items: center;'>";
+    let html = "<div style='background-color: #78c8ef; padding: 50px; min-height: 100vh; display: flex; font-family: Arial, sans-serif; align-items: center;'>";
 
-    html += "<h1 style='color: red; text-align: center; width: 100%; margin-bottom: 40px;'>Benvenuti nel mio blog di viaggio in Marocco!</h1>";
+    html += "<h1 style='color: white; text-align: center; width: 100%; margin-bottom: 40px;'>Benvenuti nel mio blog di viaggio in Marocco!</h1>";
 
 
     postets.forEach(postet => {
         html +=
-            `<div style="background-color: #068a9b; border-radius: 10px; padding: 20px; margin: 20px; width: 80%; max-width: 600px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);">`;
+            `<div style="background-color: #0e5cf6; padding: 20px; margin-bottom: 20px; border-radius: 10px; color: white;">`;
         html += `<h2>${postet.titolo}</h2>`;
         html += `<p>${postet.descrizione}</p>`;
         html += `<img src="${postet.immagine}" alt="${postet.titolo}" style="max-width: 300px; display: block; margin: 10px 0;"</div>`;
